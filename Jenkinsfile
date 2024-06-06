@@ -18,21 +18,26 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t $DOCKER_REPO:latest .'
+                    sh 'docker build -t santhosh2968/multi:v2 .'
+                    sh 'docker images'
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
                 script {
-                    sh 'docker push $DOCKER_REPO:latest'
+                    withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
+                        sh "docker login -u santhosh2969 -p ${dockerPassword}"
+                        sh 'docker push santhosh2968/multi:v2'
                 }
             }
         }
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    sh 'kubectl apply -f deployment.yaml'
+                     withKubeCredentials(kubectlCredentials: [[ credentialsId: 'kubernetes', namespace: 'ms' ]]) {
+                        sh 'kubectl apply -f kube.yaml'
+                        sh 'kubectl get pods -o wide'
                 }
             }
         }
