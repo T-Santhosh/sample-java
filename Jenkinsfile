@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                      withKubeCredentials(kubectlCredentials: [[ credentialsId: 'kubernetes', namespace: 'ms' ]]) {
-                        sh 'kubectl apply -f kube.yaml'
+                        sh 'kubectl apply -f deployment.yaml'
                         sh 'kubectl get pods -o wide'
                 }
             }
