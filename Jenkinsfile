@@ -11,7 +11,7 @@ pipeline {
         stage ('git checkout'){
             steps{
                 script{
-                    git branch: 'node-dev', url: 'https://github.com/T-Santhosh/multi-branch.git'
+                    git branch: 'main', url: 'https://github.com/T-Santhosh/sample-java.git'
                 }
         stage('Build') {
             steps {
