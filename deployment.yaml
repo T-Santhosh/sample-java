@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: your-docker-repo/demo:latest
+        image: santhosh2969/java:v2
         ports:
         - containerPort: 8080
 ---
