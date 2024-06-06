@@ -13,6 +13,8 @@ pipeline {
                 script{
                     git branch: 'main', url: 'https://github.com/T-Santhosh/sample-java.git'
                 }
+            }
+        }
         stage('Build') {
             steps {
                 script {
@@ -48,5 +50,6 @@ pipeline {
             }
         }
     }
+}
 }
         
