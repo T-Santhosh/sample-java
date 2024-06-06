@@ -23,7 +23,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t santhosh2968/multi:v2 .'
+                    sh 'docker build -t santhosh2969/multi:v2 .'
                     sh 'docker images'
                 }
             }
@@ -33,7 +33,7 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
                         sh "docker login -u santhosh2969 -p ${dockerPassword}"
-                        sh 'docker push santhosh2968/multi:v2'
+                        sh 'docker push santhosh2969/multi:v2'
                 }
             }
         }
